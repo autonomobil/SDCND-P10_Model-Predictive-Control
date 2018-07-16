@@ -41,14 +41,14 @@ These 2 additional elements are needed for the controller:
 
 ##### Simulation telemetry
 The following signals can be obtained from the simulation:
-``targetPoints_x = j[1]["ptsx"];``
-``targetPoints_y = j[1]["ptsy"];``
-``posGlob_x = j[1]["x"];     // position x``
-``posGlob_y = j[1]["y"];     // position y``
-``psi = j[1]["psi"];``
-``v = j[1]["speed"];``
-``delta = j[1]["steering_angle"];``
-``throttle_value  = j[1]["throttle"];``
+* ``targetPoints_x = j[1]["ptsx"];``
+* ``targetPoints_y = j[1]["ptsy"];``
+* ``posGlob_x = j[1]["x"];     // position x``
+* ``posGlob_y = j[1]["y"];     // position y``
+* ``psi = j[1]["psi"];``
+* ``v = j[1]["speed"];``
+* ``delta = j[1]["steering_angle"];``
+* ``throttle_value  = j[1]["throttle"];``
 
 The ``targetPoints`` are transformed to the vehicle coordinate system, this is done in ``main.cpp `` lines **151-159**. These target points are then used for a 3rd order polyfitting, result are the coefficients of this polynom. With the following equations the current ``cte`` and ``err_psi`` can be calculated:
 
