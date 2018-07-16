@@ -9,7 +9,7 @@ ___
 ## Model Predictive Control Project for Udacity's Self-Driving Car Engineer Nanodegree Program
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-This project involves the implementation of a Model Predictive Controller in C++ to control a vehicle in the [simulator of Udacity](https://github.com/udacity/self-driving-car-sim/releases). The simulator sends global target points x and y (yellow in the video) to the controller (PID) via WebSocket and receives the steering signal and throttle value ([-1, 1] normalized). [Here](https://github.com/udacity/CarND-MPC-Project) you can find the seed project of Udacity.
+This project involves the implementation of a Model Predictive Controller in C++ to control a vehicle in the [simulator of Udacity](https://github.com/udacity/self-driving-car-sim/releases). The simulator sends global target points x and y (yellow in the video) to the controller via WebSocket and receives the steering signal and throttle value ([-1, 1] normalized). [Here](https://github.com/udacity/CarND-MPC-Project) you can find the seed project of Udacity.
 
 #### The results can be viewed here(Youtube):
 [![result1](https://img.youtube.com/vi/02ajYi8aZDI/0.jpg)](https://www.youtube.com/watch?v=02ajYi8aZDI)
