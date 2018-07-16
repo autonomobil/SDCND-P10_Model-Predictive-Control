@@ -16,7 +16,7 @@ This project involves the implementation of a Model Predictive Controller in C++
 
 ## Implementation
 
-#### Overview
+### Overview
 Model predictive control (MPC) is an advanced method of process control that is used to control a process while satisfying a set of constraints. Model predictive controllers rely on dynamic models of the process, most often linear empirical models obtained by system identification. The models used in MPC are generally intended to represent the behavior of complex dynamical systems. The additional complexity of the MPC control algorithm is not generally needed to provide adequate control of simple systems, which are often controlled well by generic PID controllers. Common dynamic characteristics that are difficult for PID controllers include large time delays and high-order dynamics. [source](https://en.wikipedia.org/wiki/Model_predictive_control)
 
 ![img1]
@@ -24,8 +24,8 @@ Model predictive control (MPC) is an advanced method of process control that is 
 MPC is based on iterative, finite-horizon optimization of a plant model (in this case vehicle model). At time **t** the current vehicle state is sampled and a cost minimizing control strategy is computed (via a numerical minimization algorithm) for a time horizon in the future **t + dt**. This algorithm also handles a set of constraints, which in this case model the motion physics of the vehicle.
 
 
-#### Detailed
-##### Vehicle state
+### Detailed
+#### Vehicle state
 The state of the vehicle can be described with a vector of 4 elements:
 * X-Position: x
 * Y-Position: y
@@ -39,7 +39,7 @@ These 2 additional elements are needed for the controller:
 
 ![img3]
 
-##### Simulation telemetry
+#### Simulation telemetry
 The following signals can be obtained from the simulation:
 * ``targetPoints_x = j[1]["ptsx"];``
 * ``targetPoints_y = j[1]["ptsy"];``
@@ -54,12 +54,13 @@ The ``targetPoints`` are transformed to the vehicle coordinate system, this is d
 
 ``cte = coeffs[0];``
 ``err_psi = -atan(coeffs[1]);``
+
 After this the delay compensation will be calculated, read below for more.
 
 The following image is an edited image from udacity's course on MPC, which hopefully clarifies the subject a bit.
 ![img4]
 
-##### Model
+#### Model
 Futhermore the physical vehicle model is described by these equations:
 
 ![img2]
@@ -68,13 +69,13 @@ These equations are reshaped to zero to be useable for the optimizer. You can fi
 
 
 
-##### Delay, Optimization
+#### Delay, Optimization
 Every real system has some kind of delay between command and action, to simulate this a artificial delay of 100ms is implemented in ``main.cpp``. To compensate for this delay in the controller, the equations above are used to predict the state of the vehicle after the delay. Here psi is 0, so the equations simplify to what is written in ``main.cpp`` lines **169-174**.  If this delay is small enough this works, huge delays(>500ms) were tested but resulted in no working controller.
 
 This predicted state together with a cost function and the constraints is then fed into the Ipopt-optimizer, to optimize the next **N** actions (steering and throttle).
 
 
-##### Cost function
+#### Cost function
 Custom cost functions were implemented to allow safe and fast driving. The following exemplary cost function dictates the optimizer to find a comprise between speed and the amount of steering.
 
 ``fg[0] += CppAD::pow(vars[v_start + t], 2) * CppAD::pow(vars[delta_start + t] * factor_DeltaAndSpeed, 2);``
@@ -83,7 +84,7 @@ So if  ``factor_DeltaAndSpeed`` is set with a high value, the controller drives 
 
  ``factor_DeltaAndSpeed`` can be regarded as a "caution value". The smaller the value, the more dangerous the vehicle drives.
 
-##### Timestep Length and Elapsed Duration (N & dt) and other parameter
+#### Timestep Length and Elapsed Duration (N & dt) and other parameter
 Different values were tried for N and dt. The following values have proven to be generally usable: ``N = 7`` and ``dt = 0.1``. ``N = 7`` is relatively small, but this results in less computation and works nevertheless. **ALL** parameter are loaded with the initialization of the MPC from the file ``paramater.dat`` in the order `` N, dt, ref_v, factorCTE, factorErrorPsi, factorErrorV, factor_DeltaAndSpeed, factor_d_Delta, factor_d_Thrust``.
 
 
