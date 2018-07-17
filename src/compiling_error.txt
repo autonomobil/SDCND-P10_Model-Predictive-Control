@@ -1,4 +1,0 @@
-C:\Users\morit\SDCND\SDCND-P10_Model-Predictive-Control\src\main.cpp:2:21: fatal error: uWS/uWS.h: No such file or directory
- #include <uWS/uWS.h>
-                     ^
-compilation terminated.
