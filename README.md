@@ -110,6 +110,8 @@ These are the suggested steps for Windows setup:
 * ``sudo apt-get update``
 * ``sudo apt-get install git``
 * ``sudo apt-get install cmake``
+* ``sudo apt-get install gcc``
+* ``sudo apt-get install g++``
 * ``sudo apt-get install openssl``
 * ``sudo apt-get install libssl-dev``
 * navigate to where you want to clone this repository to, for example:
