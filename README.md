@@ -117,7 +117,7 @@ These are the suggested steps for Windows setup:
 * navigate to where you want to clone this repository to, for example:
  ``cd /mnt/c/Users/Bob``
 * ``git clone https://github.com/autonomobil/SDCND-P10_Model-Predictive-Control``
-* navigate to project folder: ``cd SDCND-P9_PID-Control``
+* navigate to project folder: ``cd SDCND-P10_Model-Predictive-Control``
 * ``sudo rm /usr/lib/libuWS.so``
 * ``./install_ipopt.sh``
 * ``./install-ubuntu.sh``
